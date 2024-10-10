@@ -1,9 +1,15 @@
-import { View, Text } from "react-native"
+import { View, Text , Pressable} from "react-native"
 
 export default function PrimaryButton(props) {
+    const pressfunction = ()=>{
+        alert("Pressable pressed")
+    }
     return (
-        <View>
-            <Text> {props.children} </Text>
-        </View>
+        <Pressable>
+            <View onPress={pressfunction} >
+                <Text> {props.children} </Text>
+            </View>
+        </Pressable>
+       
     )
 }

@@ -4,7 +4,7 @@ import StartGamescreen from './screens/StartGameScreen';
 
 export default function App() {
   return (
-    <View style={styles.mainview}>
+    <View style={styles.main} >
       <StartGamescreen/>
       <StatusBar style="auto" />
     </View>
@@ -12,13 +12,7 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: '#fff',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
-  mainview:{
-    padding:50,
+  main:{
+    flex:1
   }
 });
