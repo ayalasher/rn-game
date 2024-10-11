@@ -1,4 +1,4 @@
-import { ScrollView,Text,TextInput } from "react-native";
+import { ScrollView,TextInput } from "react-native";
 export default function GameOverScreen() {
     return(
         <ScrollView>
