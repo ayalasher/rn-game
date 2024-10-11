@@ -3,7 +3,7 @@ import PrimaryButton from "../components/PrimaryButton";
 import { TextInput , Alert , StyleSheet } from "react-native";
 import { useState } from "react";
 
-export default function StartGamescreen(){
+export default function StartGamescreen({onValidation}){
 
 
     const [enterednumber, setEnteredNumber] = useState('')
@@ -13,7 +13,7 @@ export default function StartGamescreen(){
     }
 
     const resetinputhandlerall = ()=>{
-        setEnteredNumber('')
+        setEnteredNumber('')    
         return;
         
     }
@@ -26,10 +26,13 @@ export default function StartGamescreen(){
             Alert.alert("Inavlid number","Number must be between 1 and 99", [{text:"Okay",style:"destructive",onPress:resetinputhandlerall}]);
             setEnteredNumber('');
             return ;
-        }else{
-            Alert.alert("Valid input","the input is valid",[{text:"Okay",style:"destructive"}])
+        }else{ 
+            setEnteredNumber("")
+            onValidation(intvalidation)
             return;
         }
+
+        user
     }
 
     return(
