@@ -1,19 +1,50 @@
 import {  View} from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
-import { TextInput , StyleSheet } from "react-native";
+import { TextInput , Alert , StyleSheet } from "react-native";
+import { useState } from "react";
 
 export default function StartGamescreen(){
+
+
+    const [enterednumber, setEnteredNumber] = useState('')
+
+    const textentryhandler = (enteredtext)=>{
+        setEnteredNumber(enteredtext) ;   
+    }
+
+    const resetinputhandlerall = ()=>{
+        setEnteredNumber('')
+        return;
+        
+    }
+
+    const confirminputhandler = ()=>{
+
+        const intvalidation = parseInt(enterednumber)
+
+        if (intvalidation < 1 || intvalidation > 99  || isNaN(intvalidation )){
+            Alert.alert("Inavlid number","Number must be between 1 and 99", [{text:"Okay",style:"destructive",onPress:resetinputhandlerall}]);
+            setEnteredNumber('');
+            return ;
+        }else{
+            Alert.alert("Valid input","the input is valid",[{text:"Okay",style:"destructive"}])
+            return;
+        }
+    }
+
     return(
         <View style={styles.screenbackgrounnd}  >
-            <TextInput style={styles.input} maxLength={2} autoCapitalize="none"autoCorrect={false} keyboardType="number-pad" Placeholder="Enter some text"  />
+            <TextInput style={styles.input} value={enterednumber}
+             maxLength={2} onChangeText={textentryhandler}
+             autoCapitalize="none"autoCorrect={false} keyboardType="number-pad" Placeholder="Enter some text"  />
 
             <View style={styles.btnview} >
                 <View style={styles.something} >
-                <PrimaryButton>Reset</PrimaryButton>
+                <PrimaryButton onPress={resetinputhandlerall} >Reset</PrimaryButton>
                 </View>
 
                 <View style={styles.something} >
-                <PrimaryButton>Confirm</PrimaryButton>
+                <PrimaryButton onPress={confirminputhandler} >Confirm</PrimaryButton>
                 </View>        
             </View>
             

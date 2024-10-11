@@ -1,14 +1,11 @@
 import { View, Text , Pressable, StyleSheet} from "react-native"
 
-export default function PrimaryButton(props) {
-    const pressfunction = ()=>{
-        alert("Button  pressed 😀")
-    }
+export default function PrimaryButton({children, onPress}) {
     return (
        
             <View style={styles.btnoutercontainer} >
-                 <Pressable onPress={pressfunction} style={ ({dedicatedIOSripple})=> dedicatedIOSripple ? [styles.btninnnercontainer,styles.dedicatedIOSripple] : styles.btninnnercontainer} android_ripple={{color:"grey"}} >
-                    <Text style={styles.buttontext} > {props.children} </Text>
+                 <Pressable onPress={onPress} style={ ({dedicatedIOSripple})=> dedicatedIOSripple ? [styles.btninnnercontainer,styles.dedicatedIOSripple] : styles.btninnnercontainer} android_ripple={{color:"grey"}} >
+                    <Text style={styles.buttontext} > {children} </Text>
                  </Pressable>
             </View>
        
