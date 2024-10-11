@@ -2,12 +2,12 @@ import { View, Text , Pressable, StyleSheet} from "react-native"
 
 export default function PrimaryButton(props) {
     const pressfunction = ()=>{
-        alert("Pressable pressed 😀")
+        alert("Button  pressed 😀")
     }
     return (
        
             <View style={styles.btnoutercontainer} >
-                 <Pressable onPress={pressfunction} style={styles.btninnnercontainer} android_ripple={{color:"grey"}} >
+                 <Pressable onPress={pressfunction} style={ ({dedicatedIOSripple})=> dedicatedIOSripple ? [styles.btninnnercontainer,styles.dedicatedIOSripple] : styles.btninnnercontainer} android_ripple={{color:"grey"}} >
                     <Text style={styles.buttontext} > {props.children} </Text>
                  </Pressable>
             </View>
@@ -29,6 +29,10 @@ const styles = StyleSheet.create({
     btnoutercontainer:{
         borderRadius:10,
         marginVertical:10,
-        overflow:"hidden"
-    }
+        overflow:"hidden",
+        marginHorizontal:5,
+    },
+    dedicatedIOSripple:{
+        opacity:0.75
+    },
 })
