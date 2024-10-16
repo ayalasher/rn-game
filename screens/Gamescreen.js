@@ -30,11 +30,11 @@ const styles = StyleSheet.create({
     txtsizelarge:{
         fontSize:25,
         fontWeight:"900",
-        fontFamily:"roboto"
+        
     },
     txtsizesmall:{
         fontSize:17,
         fontWeight:"500",
-        fontFamily:"roboto"
+        
     }
 })
