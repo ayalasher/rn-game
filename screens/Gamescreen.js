@@ -24,6 +24,15 @@ export default function Gamescreen({opponentsguess}) {
         
     }
 
+    function nextguesshandler(direction) {
+        // Bigger and lower
+        if (direction === "bigger") {
+            generaterandombetween()
+        } else {
+            
+        }
+    }
+
     const initialguess =  generaterandombetween(1,100,opponentsnum)
     const [currentguess, getCurrentGuess] = useState(initialguess)
     return(
