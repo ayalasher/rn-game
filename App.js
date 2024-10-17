@@ -4,6 +4,8 @@ import StartGamescreen from './screens/StartGameScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import Gamescreen from './screens/Gamescreen';
+import Colors from './constants/Colors';
+
 
 
 export default function App() {
@@ -17,7 +19,7 @@ export default function App() {
   let screendisplay = <StartGamescreen onValidation={userenterednumberhandler} />
 
   if (data) {
-    screendisplay = <Gamescreen/>
+    screendisplay = <Gamescreen opponentsguess={data} />
   }
 
   return (

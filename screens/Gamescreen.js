@@ -1,12 +1,14 @@
 import { View , Text} from "react-native";
 import { StyleSheet } from "react-native";
+import Title from "../components/Title";
 
-export default function Gamescreen() {
+export default function Gamescreen({opponentsguess}) {
+
+    const opponentsguess = opponentsguess ;
     return(
         <View style={styles.main} >
-            <Text style={styles.txtsizelarge} >
-               Opponent's guess  
-            </Text>
+            <Title/>
+            <Text style={styles.oppguess} > {opponentsguess} </Text>
             <View>
                 <Text style={styles.txtsizesmall} >Higher ir lower??</Text>
                 {/* higher or lower buttons */}
@@ -27,14 +29,15 @@ const styles = StyleSheet.create({
         marginTop:70,
         marginBottom:3,
     },
-    txtsizelarge:{
-        fontSize:25,
-        fontWeight:"900",
-        
-    },
     txtsizesmall:{
         fontSize:17,
         fontWeight:"500",
         
+        
+    },
+    oppguess:{
+        textAlign:"centre",
+        fontsize:25
+
     }
 })
