@@ -3,6 +3,11 @@ import { StyleSheet } from "react-native";
 import Title from "../components/Title";
 import { useState } from "react";
 import Numbercontainer from "../components/Numbercontainer";
+import PrimaryButton from "../components/PrimaryButton";
+
+
+
+
 export default function Gamescreen({opponentsguess}) {
 
 
@@ -29,10 +34,15 @@ export default function Gamescreen({opponentsguess}) {
                 <Numbercontainer> {currentguess} </Numbercontainer>
                 <Text style={styles.txtsizesmall} >Higher or lower??</Text>
                 {/* higher or lower buttons */}
-                {/* + , - */}
+
+                <View style={styles.btncontainer} >
+                    <PrimaryButton>-</PrimaryButton>
+                    <PrimaryButton>+</PrimaryButton>
+                </View>
+                
             </View>
 
-            <Text>Log rounds</Text>
+            <Text style={styles.txtsizesmall} > rounds</Text>
             
         </View>
     );
@@ -49,9 +59,15 @@ const styles = StyleSheet.create({
     txtsizesmall:{
         fontSize:17,
         fontWeight:"500",
+        paddingVertical:20,
+        textAlign:"center"
         
         
     },
+    btncontainer:{
+        flexDirection:"row",
+        justifyContent:"center"
+    }
     // oppguess:{
     //     textAlign:"centre",
     //     fontsize:25,
