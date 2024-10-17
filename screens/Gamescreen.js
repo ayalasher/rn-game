@@ -1,16 +1,33 @@
 import { View , Text} from "react-native";
 import { StyleSheet } from "react-native";
 import Title from "../components/Title";
-
+import { useState } from "react";
+import Numbercontainer from "../components/Numbercontainer";
 export default function Gamescreen({opponentsguess}) {
 
-    const opponentsguess = opponentsguess ;
+
+  
+
+    let opponentsnum = opponentsguess ;
+    function generaterandombetween(min , max , exclude) {
+        const rndmnum = Math.floor(Math.random()*(max-min))+min ;
+        if (rndmnum===exclude) {
+            return generaterandombetween(min, max, exclude)
+        } else {
+            return rndmnum; 
+        }
+        
+    }
+
+    const initialguess =  generaterandombetween(1,100,opponentsnum)
+    const [currentguess, getCurrentGuess] = useState(initialguess)
     return(
         <View style={styles.main} >
             <Title/>
-            <Text style={styles.oppguess} > {opponentsguess} </Text>
+            {/* <Text style={styles.oppguess} > {opponentsguess} </Text> */}
             <View>
-                <Text style={styles.txtsizesmall} >Higher ir lower??</Text>
+                <Numbercontainer> {currentguess} </Numbercontainer>
+                <Text style={styles.txtsizesmall} >Higher or lower??</Text>
                 {/* higher or lower buttons */}
                 {/* + , - */}
             </View>
@@ -35,9 +52,10 @@ const styles = StyleSheet.create({
         
         
     },
-    oppguess:{
-        textAlign:"centre",
-        fontsize:25
+    // oppguess:{
+    //     textAlign:"centre",
+    //     fontsize:25,
 
-    }
+
+    // }
 })
