@@ -9,13 +9,15 @@ export default function Numbercontainer({children}) {
 
 const styles = StyleSheet.create({
     container:{
-        marginHorizontal:10
+        marginHorizontal:10,
+        
     },
     containertxt:{
         textAlign:"center",
-        margin:20,
-        borderRadius:2,
+        padding:15,
+        borderWidth:2,
         borderColor:"#ddb52f"
+       
     }
 })
 
