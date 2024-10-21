@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Gamescreen from './screens/Gamescreen';
 import GameOverScreen from './screens/GameOverScreen';
 import {useFonts}  from "expo-font"
+import AppLoading from 'expo-app-loading';
 
 
 export default function App() {

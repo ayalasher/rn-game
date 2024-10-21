@@ -16,7 +16,6 @@ export default function StartGamescreen({onValidation}){
     const resetinputhandlerall = ()=>{
         setEnteredNumber('')    
         return;
-        
     }
 
     const confirminputhandler = ()=>{
