@@ -14,6 +14,16 @@ export default function App() {
   const [data,setData] = useState(null)
   const [gameover, setgameover] = useState(true)
 
+
+ const [fontsloaded] =  useFonts({
+    'open-sans':require("./assets/fonts/OpenSans-Regular.ttf"),
+    'open-sans-bold':require('./assets/fonts/OpenSans-Bold.ttf')
+  })
+
+  if (!fontsloaded) {
+    return  <AppLoading/> ; 
+  }
+
   const userenterednumberhandler = (userenterednumber)=>{
     setData(userenterednumber)
     setgameover(false)
@@ -43,7 +53,9 @@ export default function App() {
         style={styles.main}
         resizeMode='cover' source={require("./assets/images/fulvio-di-sciullo-HEna_6UIQ5M-unsplash.jpg")} >
          {/* <SafeAreaView>    </SafeAreaView> */}
-         {screendisplay}
+         {/* {screendisplay} */}
+         <GameOverScreen/>
+
        </ImageBackground>
       
       <StatusBar style="auto" />
