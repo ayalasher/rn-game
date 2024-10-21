@@ -48,14 +48,12 @@ export default function Gamescreen({opponentsguess,onGameover}) {
         if (direction === "smaller") {
             maxboundry=currentguess  ; 
           
-        } else {
+        } else if(direction=== "greater") {
             // When the value is larger/bigger/higher
             minboundry = currentguess + 1 ;
             
-        }
-
-        if (currentguess===opponentsguess) {
-            Alert.alert("Bravo","The guess is correct",[{text:"Okay",style:"destructive"}])
+        } else{
+            onGameover();
         }
 
         const newrandomnumber = generaterandombetween(minboundry,maxboundry,currentguess)

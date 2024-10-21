@@ -12,17 +12,17 @@ import AppLoading from 'expo-app-loading';
 export default function App() {
 
   const [data,setData] = useState(null)
-  const [gameover, setgameover] = useState(true)
+  const [gameover, setgameover] = useState(false)
 
 
- const [fontsloaded] =  useFonts({
-    'open-sans':require("./assets/fonts/OpenSans-Regular.ttf"),
-    'open-sans-bold':require('./assets/fonts/OpenSans-Bold.ttf')
-  })
+//  const [fontsloaded] =  useFonts({
+//     'open-sans':require("./assets/fonts/OpenSans-Regular.ttf"),
+//     'open-sans-bold':require('./assets/fonts/OpenSans-Bold.ttf')
+//   })
 
-  if (!fontsloaded) {
-    return  <AppLoading/> ; 
-  }
+//   if (!fontsloaded) {
+//     return  <AppLoading/> ; 
+//   }
 
   const userenterednumberhandler = (userenterednumber)=>{
     setData(userenterednumber)
@@ -43,7 +43,7 @@ export default function App() {
   }
 
   if (gameover) {
-    screen = <GameOverScreen/>
+    screen = <GameOverScreen onGameover={Gameoverhandler} />
   }
 
   return (
@@ -53,9 +53,7 @@ export default function App() {
         style={styles.main}
         resizeMode='cover' source={require("./assets/images/fulvio-di-sciullo-HEna_6UIQ5M-unsplash.jpg")} >
          {/* <SafeAreaView>    </SafeAreaView> */}
-         {/* {screendisplay} */}
-         <GameOverScreen/>
-
+         {screendisplay}
        </ImageBackground>
       
       <StatusBar style="auto" />
