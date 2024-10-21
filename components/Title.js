@@ -1,8 +1,8 @@
 import { Text, View , StyleSheet } from "react-native";
 
-export default function Title() {
+export default function Title(props) {
     return<View>
-        <Text style={styles.txtsizelarge} >Opponents Guess</Text>
+        <Text style={styles.txtsizelarge} >{props.children}</Text>
     </View>
 }
 

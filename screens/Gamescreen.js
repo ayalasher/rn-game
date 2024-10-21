@@ -1,19 +1,21 @@
-import { View , Text} from "react-native";
+import { View , Text, Alert} from "react-native";
 import { StyleSheet } from "react-native";
 import Title from "../components/Title";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Numbercontainer from "../components/Numbercontainer";
 import PrimaryButton from "../components/PrimaryButton";
+import AntDesign  from '@expo/vector-icons/AntDesign'
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 
 
 
-export default function Gamescreen({opponentsguess}) {
+export default function Gamescreen({opponentsguess,onGameover}) {
+    // let opponentsnum = opponentsguess ;
 
+    const initialguess =  generaterandombetween(1,100,opponentsguess)
+    const [currentguess, getCurrentGuess] = useState(initialguess)
 
-  
-
-    let opponentsnum = opponentsguess ;
     function generaterandombetween(min , max , exclude) {
         const rndmnum = Math.floor(Math.random()*(max-min))+min ;
         if (rndmnum===exclude) {
@@ -22,22 +24,48 @@ export default function Gamescreen({opponentsguess}) {
             return rndmnum; 
         }
         
+        
     }
+
+    let minboundry = 1 ;
+    let maxboundry = 100;
+
+   
+
+
+    useEffect(()=>{
+        if (currentguess===opponentsguess) {
+            onGameover();
+        }
+    },[currentguess,onGameover,opponentsguess])
 
     function nextguesshandler(direction) {
-        // Bigger and lower
-        if (direction === "bigger") {
-            generaterandombetween()
+
+        if ((direction==="smaller" && currentguess < opponentsguess) || (direction==="greater"&&currentguess>opponentsguess) ) {
+            Alert.alert("Don't lie","That logic is wrong",[{text:"sorry",style:"desctructive"}])
+        }
+        // Bigger and smaller
+        if (direction === "smaller") {
+            maxboundry=currentguess  ; 
+          
         } else {
+            // When the value is larger/bigger/higher
+            minboundry = currentguess + 1 ;
             
         }
+
+        if (currentguess===opponentsguess) {
+            Alert.alert("Bravo","The guess is correct",[{text:"Okay",style:"destructive"}])
+        }
+
+        const newrandomnumber = generaterandombetween(minboundry,maxboundry,currentguess)
+        getCurrentGuess(newrandomnumber)
     }
 
-    const initialguess =  generaterandombetween(1,100,opponentsnum)
-    const [currentguess, getCurrentGuess] = useState(initialguess)
+   
     return(
         <View style={styles.main} >
-            <Title/>
+            <Title>Opponents guess</Title>
             {/* <Text style={styles.oppguess} > {opponentsguess} </Text> */}
             <View>
                 <Numbercontainer> {currentguess} </Numbercontainer>
@@ -45,8 +73,8 @@ export default function Gamescreen({opponentsguess}) {
                 {/* higher or lower buttons */}
 
                 <View style={styles.btncontainer} >
-                    <PrimaryButton>-</PrimaryButton>
-                    <PrimaryButton>+</PrimaryButton>
+                    <PrimaryButton onPress={nextguesshandler.bind(this , "smaller")} > <AntDesign name="minus" /> </PrimaryButton>
+                    <PrimaryButton onPress={nextguesshandler.bind(this , "greater" )} > <FontAwesome6 name="add" /> </PrimaryButton>
                 </View>
                 
             </View>

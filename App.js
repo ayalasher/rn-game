@@ -4,22 +4,35 @@ import StartGamescreen from './screens/StartGameScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import Gamescreen from './screens/Gamescreen';
-import Colors from './constants/Colors';
-
+import GameOverScreen from './screens/GameOverScreen';
+import {useFonts}  from "expo-font"
 
 
 export default function App() {
 
   const [data,setData] = useState(null)
+  const [gameover, setgameover] = useState(true)
 
   const userenterednumberhandler = (userenterednumber)=>{
     setData(userenterednumber)
+    setgameover(false)
   }
+
+  function Gameoverhandler() {
+    setgameover(true)
+  }
+
 
   let screendisplay = <StartGamescreen onValidation={userenterednumberhandler} />
 
+
+
   if (data) {
-    screendisplay = <Gamescreen opponentsguess={data} />
+    screendisplay = <Gamescreen opponentsguess={data} onGameover={Gameoverhandler} />
+  }
+
+  if (gameover) {
+    screen = <GameOverScreen/>
   }
 
   return (

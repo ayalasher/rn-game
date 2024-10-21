@@ -1,7 +1,8 @@
-import {  View} from "react-native";
+import {  Text, View} from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import { TextInput , Alert , StyleSheet } from "react-native";
 import { useState } from "react";
+import Title from "../components/Title";
 
 export default function StartGamescreen({onValidation}){
 
@@ -20,7 +21,7 @@ export default function StartGamescreen({onValidation}){
 
     const confirminputhandler = ()=>{
 
-        const intvalidation = parseInt(enterednumber)
+        const intvalidation = parseInt(enterednumber) 
 
         if (intvalidation < 1 || intvalidation > 99  || isNaN(intvalidation )){
             Alert.alert("Inavlid number","Number must be between 1 and 99", [{text:"Okay",style:"destructive",onPress:resetinputhandlerall}]);
@@ -36,7 +37,10 @@ export default function StartGamescreen({onValidation}){
     }
 
     return(
-        <View style={styles.screenbackgrounnd}  >
+        <View style={styles.roocontainer} >
+            <Title >Enter a number</Title>
+          <View style={styles.screenbackgrounnd}  >
+            <Text style={styles.instructiontxt} >Enter a number</Text>
             <TextInput style={styles.input} value={enterednumber}
              maxLength={2} onChangeText={textentryhandler}
              autoCapitalize="none"autoCorrect={false} keyboardType="number-pad" Placeholder="Enter some text"  />
@@ -51,6 +55,7 @@ export default function StartGamescreen({onValidation}){
                 </View>        
             </View>
             
+         </View>
         </View>
     );
 } 
@@ -89,5 +94,16 @@ const styles = StyleSheet.create({
     },
     something:{
         flex:1,
+    },
+    roocontainer:{
+        flex:1,
+        marginVertical:40,
+        marginHorizontal:20,
+
+    },
+    instructiontxt:{
+        color:"#ddb52f",
+        fontSize:18,
     }
+
 })
